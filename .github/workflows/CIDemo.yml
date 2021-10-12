@@ -16,7 +16,7 @@ jobs:
       - name: Copy Files to Deployment
         run: 'Xcopy /e /i /y * C:\Deployment\'
       - name: Run TOSCA Test
-        run: C:\GitHub\ToscaCIClient\ToscaCIClient.exe -m distributed -c "CITestExecutionConfiguration.xml"
+        run: C:\GitHub\ToscaCIDemo.bat
       - name: Attach the Report
         if: always()
         uses: actions/upload-artifact@v1
