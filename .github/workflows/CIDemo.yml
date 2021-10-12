@@ -17,9 +17,3 @@ jobs:
         run: 'Xcopy /e /i /y * C:\Deployment\'
       - name: Run TOSCA Test
         run: C:\GitHub\ToscaCIDemo.bat
-      - name: Attach the Report
-        if: always()
-        uses: actions/upload-artifact@v1
-        with:
-          name: Results.xml
-          path: 'C:\GitHub\Result\Results.xml'
