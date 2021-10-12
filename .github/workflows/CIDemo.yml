@@ -12,40 +12,24 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      image: alpine:latest
-
-stages:
-  - build
-  - deploy
-  - test
-
-build:
-  stage: build
-  script: 
-    - echo 'Build complete'
-
-deploy:
-  stage: deploy
-  script:
-    - mkdir .public
-    - cp -r * .public
-    - mv .public public
-    - echo 'App deployed'
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
-
-tosca:
-  stage: test
-  script:
-    - cd C:\GitHub\ToscaCIClient\
-    - .\ToscaCIClient.exe -m distributed -c "CITestExecutionConfiguration.xml"
-    - cp C:\GitHub\ToscaCIResults\result.xml $CI_PROJECT_DIR\ToscaCIResults.xml
-  artifacts:
-    when: always
-    reports:
-      junit: $CI_PROJECT_DIR\ToscaCIResults.xml
-  tags: 
-    - toscaci
+      - uses: actions/checkout@v2
+      - name: Copy Files to Deployment
+        run: 'Xcopy /e /i /y * C:\Deployment\'
+      - name: Run TOSCA Test
+        run: C:\GitHub\ToscaCIClient\ToscaCIClient.exe -m distributed -c "CITestExecutionConfiguration.xml"
+      - name: Attach the Report
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: Results.xml
+          path: 'C:\GitHub\Result\Results.xml'
+      - name: Copy outut from TOSCA test to local repo
+        run: >-
+	    Xcopy /e /i /y C:\GitHub\Result\Results.xml 
+      C:\actions-runner\actions-runner-win-x64-2.283.2\_work\NewRepository
+      - name:Test Reporter
+        uses: dorny/test-reporter@v1.4.3
+	with:
+	  name: Test1
+	  path: Results.xml
+ 	  reporter: java -junit
