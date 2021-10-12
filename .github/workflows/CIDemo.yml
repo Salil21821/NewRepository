@@ -25,7 +25,7 @@ jobs:
           path: 'C:\GitHub\Result\Results.xml'
       - name:Test Reporter
         uses: dorny/test-reporter@v1.4.3
-	 with:
-	   name: Test1
-	   path: Results.xml
-	   reporter: java -junit
+	with:
+	  name: Test1
+	  path: Results.xml
+	  reporter: java -junit
