@@ -23,10 +23,6 @@ jobs:
         with:
           name: Results.xml
           path: 'C:\GitHub\Result\Results.xml'
-      - name: Copy outut from TOSCA test to local repo
-        run: >-
-	Xcopy /e /i /y C:\GitHub\Result\Results.xml 
-	C:\actions-runner\actions-runner-win-x64-2.283.2\_work\NewRepository
       - name:Test Reporter
         uses: dorny/test-reporter@v1.4.3
 	with:
