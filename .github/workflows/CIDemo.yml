@@ -22,7 +22,7 @@ jobs:
         if: success() || failure()
         with:
           name: "Unit test report"
-          path: 'Results.xml'
+          path: 'C:\GitHub\Result\Results.xml'
           reporter: java-junit
           
       - name: Upload Test Results
@@ -30,4 +30,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Unit Test Results
-          path: pytest.xml
+          path: 'C:\GitHub\Result\Results.xml'
