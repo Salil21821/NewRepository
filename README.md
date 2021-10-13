@@ -6,4 +6,3 @@ new line
 new line 2
 adding new line
 adding new line
-adding new line4
