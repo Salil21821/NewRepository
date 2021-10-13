@@ -16,4 +16,4 @@ jobs:
       - name: Copy Files to Deployment
         run: 'Xcopy /e /i /y * C:\Deployment\'
       - name: Run TOSCA Test
-        run: C:\GitHub\ToscaCIDemo.bat
+        run: 'C:\GitHub\ToscaCIClient\ToscaCIClient.exe -m distributed -c "C:\GitHub\TOSCACIClient\CITestExecutionConfiguration.xml" -r "C:\GitHub\Result\Results.xml"'
